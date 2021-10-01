@@ -19,6 +19,7 @@ public final class se/warting/firebasecompose/FirebaseComposeAuthKt {
 
 public final class se/warting/firebasecompose/ProvideAndroidCompositionLocalsKt {
 	public static final fun ProvideFirebaseComposeAuthLocals (Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
+	public static final fun getLocalFirebaseAuth ()Landroidx/compose/runtime/ProvidableCompositionLocal;
 	public static final fun getLocalFirebaseAuthState ()Landroidx/compose/runtime/ProvidableCompositionLocal;
 }
 

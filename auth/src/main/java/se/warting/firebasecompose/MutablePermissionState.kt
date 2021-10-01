@@ -31,15 +31,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 
 @Composable
 internal fun rememberMutableFirebaseAuthState(): FirebaseAuthState {
 
+    val firebaseAuth = LocalFirebaseAuth.current
+
     val firebaseAuthState = remember {
-        MutableFirebaseAuthState()
+        MutableFirebaseAuthState(firebaseAuth)
     }
 
     val authStateListener = remember {
@@ -58,40 +58,40 @@ internal fun rememberMutableFirebaseAuthState(): FirebaseAuthState {
     return firebaseAuthState
 }
 
-internal class MutableFirebaseAuthState : FirebaseAuthState {
+internal class MutableFirebaseAuthState(
+    private val firebaseAuth: FirebaseAuth
+) : FirebaseAuthState {
 
-    private val f = Firebase.auth
-
-    private var _isLoggedIn by mutableStateOf(f.currentUser != null)
+    private var _isLoggedIn by mutableStateOf(firebaseAuth.currentUser != null)
 
     override val isLoggedIn: Boolean
         get() = _isLoggedIn
 
     override fun logout() {
-        f.signOut()
+        firebaseAuth.signOut()
     }
 
     override fun signInAnonymously() {
-        f.signInAnonymously()
+        firebaseAuth.signInAnonymously()
     }
 
     override fun addAuthStateListener(listener: FirebaseAuth.AuthStateListener) {
-        f.addAuthStateListener(listener)
+        firebaseAuth.addAuthStateListener(listener)
     }
 
     override fun removeAuthStateListener(listener: FirebaseAuth.AuthStateListener) {
-        f.removeAuthStateListener(listener)
+        firebaseAuth.removeAuthStateListener(listener)
     }
 
     override fun updateLoggedInState() {
-        _isLoggedIn = f.currentUser != null
+        _isLoggedIn = firebaseAuth.currentUser != null
     }
 
     override suspend fun getItToken(forceRefresh: Boolean): String? {
-        return f.currentUser?.getIdToken(forceRefresh)?.await()?.token
+        return firebaseAuth.currentUser?.getIdToken(forceRefresh)?.await()?.token
     }
 
     override fun getUserId(): String? {
-        return f.currentUser?.uid
+        return firebaseAuth.currentUser?.uid
     }
 }

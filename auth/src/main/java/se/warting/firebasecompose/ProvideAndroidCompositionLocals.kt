@@ -27,9 +27,15 @@ package se.warting.firebasecompose
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 val LocalFirebaseAuthState = staticCompositionLocalOf<FirebaseAuthState> {
     noLocalProvidedFor("FirebaseAuth")
+}
+
+val LocalFirebaseAuth = staticCompositionLocalOf {
+    Firebase.auth // Default instance of auth
 }
 
 @Composable
