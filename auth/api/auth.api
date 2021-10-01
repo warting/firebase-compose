@@ -1,0 +1,31 @@
+public abstract interface class se/warting/firebasecompose/FirebaseAuthState {
+	public abstract fun addAuthStateListener (Lcom/google/firebase/auth/FirebaseAuth$AuthStateListener;)V
+	public abstract fun getItToken (ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getUserId ()Ljava/lang/String;
+	public abstract fun isLoggedIn ()Z
+	public abstract fun logout ()V
+	public abstract fun removeAuthStateListener (Lcom/google/firebase/auth/FirebaseAuth$AuthStateListener;)V
+	public abstract fun signInAnonymously ()V
+	public abstract fun updateLoggedInState ()V
+}
+
+public final class se/warting/firebasecompose/FirebaseAuthStateKt {
+	public static final fun rememberFirebaseAuthState (Landroidx/compose/runtime/Composer;I)Lse/warting/firebasecompose/FirebaseAuthState;
+}
+
+public final class se/warting/firebasecompose/FirebaseComposeAuthKt {
+	public static final fun FirebaseComposeAuth (Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
+}
+
+public final class se/warting/firebasecompose/ProvideAndroidCompositionLocalsKt {
+	public static final fun ProvideFirebaseComposeAuthLocals (Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
+	public static final fun getLocalFirebaseAuthState ()Landroidx/compose/runtime/ProvidableCompositionLocal;
+}
+
+public final class se/warting/firebasecompose/auth/BuildConfig {
+	public static final field BUILD_TYPE Ljava/lang/String;
+	public static final field DEBUG Z
+	public static final field LIBRARY_PACKAGE_NAME Ljava/lang/String;
+	public fun <init> ()V
+}
+
