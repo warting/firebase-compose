@@ -1,0 +1,4 @@
+rootProject.name = "Firebase Compose"
+include ':app'
+include ':firebasecompose-auth'
+include ':firebasecompose-core'
