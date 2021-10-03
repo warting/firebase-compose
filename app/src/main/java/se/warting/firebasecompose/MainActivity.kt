@@ -45,6 +45,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import kotlinx.coroutines.launch
+import se.warting.firebasecompose.auth.FirebaseComposeAuth
+import se.warting.firebasecompose.auth.LocalFirebaseAuthState
+import se.warting.firebasecompose.auth.ProvideFirebaseComposeAuthLocals
+import se.warting.firebasecompose.auth.rememberFirebaseAuthState
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

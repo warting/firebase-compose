@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package se.warting.firebasecompose
+package se.warting.firebasecompose.auth
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect

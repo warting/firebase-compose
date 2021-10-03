@@ -23,40 +23,53 @@
  */
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("kotlin-android")
-    id("com.google.gms.google-services")
+    id("maven-publish")
+    id("signing")
+    id("org.jetbrains.dokka") version "1.5.30"
+    id("com.gladed.androidgitversion") version "0.4.14"
 }
+
+
+androidGitVersion {
+    tagPattern = "^v[0-9]+.*"
+}
+
+
+val PUBLISH_GROUP_ID: String by extra("se.warting.firebase-compose")
+val PUBLISH_VERSION: String by extra(androidGitVersion.name().replace("v", ""))
+val PUBLISH_ARTIFACT_ID by extra("dynamic-links")
+
+apply(from = "${rootProject.projectDir}/gradle/publish-module.gradle")
 
 android {
     compileSdk = 31
 
     defaultConfig {
-        applicationId = "se.warting.firebasecompose"
         minSdk = 21
         targetSdk = 31
-        versionCode = 1
-        versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
     }
 
     buildTypes {
-        getByName("release") {
-            isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+        release {
+            isMinifyEnabled = false
         }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    buildFeatures {
+        viewBinding = true
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.0.3"
+    }
+
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
         freeCompilerArgs = listOfNotNull(
@@ -64,36 +77,37 @@ android {
             "-Xskip-prerelease-check"
         )
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.0.3"
-    }
 
     lint {
         lintConfig = file("$rootDir/config/lint/lint.xml")
+        lintConfig = file("$rootDir/config/lint/lint.xml")
+        //baseline(file("lint-baseline.xml"))
     }
+}
+
+kotlin {
+    // https://kotlinlang.org/docs/whatsnew14.html#explicit-api-mode-for-library-authors
+    explicitApi()
 }
 
 
 dependencies {
-    implementation(platform("com.google.firebase:firebase-bom:28.4.1"))
-    implementation("androidx.constraintlayout:constraintlayout:2.1.1")
+
     val composeVersion = "1.0.3"
+    val coroutineVersion = "1.5.2"
+
+    implementation(project(":core"))
+    api(platform("com.google.firebase:firebase-bom:28.4.1"))
+    api("com.google.firebase:firebase-dynamic-links-ktx")
+
+    api("androidx.compose.runtime:runtime:$composeVersion")
+    api("androidx.compose.ui:ui:$composeVersion")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$coroutineVersion")
+
     implementation("androidx.core:core-ktx:1.6.0")
-    implementation(project(":auth"))
-    implementation(project(":dynamiclinks"))
     implementation("androidx.appcompat:appcompat:1.3.1")
     implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.compose.ui:ui:$composeVersion")
-    implementation("androidx.compose.material:material:$composeVersion")
-    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
-    implementation("androidx.activity:activity-compose:1.3.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeVersion")
-    debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
 }
