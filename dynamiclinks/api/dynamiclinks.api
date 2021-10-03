@@ -1,0 +1,21 @@
+public final class se/warting/dynamiclink/BuildConfig {
+	public static final field BUILD_TYPE Ljava/lang/String;
+	public static final field DEBUG Z
+	public static final field LIBRARY_PACKAGE_NAME Ljava/lang/String;
+	public fun <init> ()V
+}
+
+public abstract interface class se/warting/firebasecompose/dynamiclinks/DynamicLinksState {
+	public abstract fun createDynamicLink (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getDynamicLink (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getPendingDynamicLinkData ()Lcom/google/firebase/dynamiclinks/PendingDynamicLinkData;
+}
+
+public final class se/warting/firebasecompose/dynamiclinks/DynamicLinksStateKt {
+	public static final fun rememberDynamicLinkState (ZLandroidx/compose/runtime/Composer;II)Lse/warting/firebasecompose/dynamiclinks/DynamicLinksState;
+}
+
+public final class se/warting/firebasecompose/dynamiclinks/LocalFirebaseDynamicLinksKt {
+	public static final fun getLocalFirebaseDynamicLinks ()Landroidx/compose/runtime/ProvidableCompositionLocal;
+}
+

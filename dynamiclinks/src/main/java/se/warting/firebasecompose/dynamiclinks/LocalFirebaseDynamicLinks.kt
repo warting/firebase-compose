@@ -22,28 +22,15 @@
  * SOFTWARE.
  */
 
-package se.warting.firebasecompose
+package se.warting.firebasecompose.dynamiclinks
 
-import androidx.compose.runtime.Composable
-import com.google.firebase.auth.FirebaseAuth
+import androidx.compose.runtime.ProvidableCompositionLocal
+import androidx.compose.runtime.staticCompositionLocalOf
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
+import com.google.firebase.dynamiclinks.ktx.dynamicLinks
+import com.google.firebase.ktx.Firebase
 
-@Composable
-fun rememberFirebaseAuthState(): FirebaseAuthState {
-    return rememberMutableFirebaseAuthState()
-}
-
-interface FirebaseAuthState {
-
-    val isLoggedIn: Boolean
-
-    fun logout()
-
-    fun signInAnonymously()
-
-    fun addAuthStateListener(listener: FirebaseAuth.AuthStateListener)
-    fun removeAuthStateListener(listener: FirebaseAuth.AuthStateListener)
-    fun updateLoggedInState()
-
-    suspend fun getItToken(forceRefresh: Boolean): String?
-    fun getUserId(): String?
-}
+val LocalFirebaseDynamicLinks: ProvidableCompositionLocal<FirebaseDynamicLinks> =
+    staticCompositionLocalOf {
+        Firebase.dynamicLinks // default instance of dynamic links
+    }
