@@ -96,7 +96,7 @@ dependencies {
     val composeVersion = "1.0.3"
     val coroutineVersion = "1.5.2"
 
-    api(platform("com.google.firebase:firebase-bom:28.4.1"))
+    api(platform("com.google.firebase:firebase-bom:28.4.2"))
 
     api("androidx.compose.runtime:runtime:$composeVersion")
     api("androidx.compose.ui:ui:$composeVersion")
