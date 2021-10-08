@@ -24,23 +24,35 @@
 
 package se.warting.firebasecompose
 
-import android.app.Activity
-import android.content.Context
-import android.content.ContextWrapper
-import androidx.annotation.RestrictTo
-import androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP
-import se.warting.firebasecompose.annotation.InternalFirebaseComposeApi
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import se.warting.firebasecompose.annotation.ExperimentalFirebaseComposeApi
+import se.warting.firebasecompose.messaging.LocalFirebaseMessagingToken
+import se.warting.firebasecompose.messaging.ProvideMessagingToken
 
-/**
- * Find the closest Activity in a given Context.
- */
-@RestrictTo(LIBRARY_GROUP)
-@InternalFirebaseComposeApi
-fun Context.findActivity(): Activity {
-    var context = this
-    while (context is ContextWrapper) {
-        if (context is Activity) return context
-        context = context.baseContext
+@ExperimentalFirebaseComposeApi
+class MessagingTokenActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MaterialTheme {
+                Surface {
+                    MessagingSample()
+                }
+            }
+        }
     }
-    throw IllegalStateException("Permissions should be called in the context of an Activity")
+}
+
+@ExperimentalFirebaseComposeApi
+@Composable
+fun MessagingSample() {
+    ProvideMessagingToken {
+        Text(text = "Token: " + LocalFirebaseMessagingToken.current)
+    }
 }

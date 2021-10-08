@@ -2,10 +2,79 @@ public final class se/warting/firebasecompose/FirebaseComposeUtilsKt {
 	public static final fun findActivity (Landroid/content/Context;)Landroid/app/Activity;
 }
 
+public abstract class se/warting/firebasecompose/LoadingState {
+	public static final field $stable I
+}
+
+public final class se/warting/firebasecompose/LoadingState$Failed : se/warting/firebasecompose/LoadingState {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/Exception;)V
+	public final fun component1 ()Ljava/lang/Exception;
+	public final fun copy (Ljava/lang/Exception;)Lse/warting/firebasecompose/LoadingState$Failed;
+	public static synthetic fun copy$default (Lse/warting/firebasecompose/LoadingState$Failed;Ljava/lang/Exception;ILjava/lang/Object;)Lse/warting/firebasecompose/LoadingState$Failed;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getError ()Ljava/lang/Exception;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class se/warting/firebasecompose/LoadingState$Loading : se/warting/firebasecompose/LoadingState {
+	public static final field $stable I
+	public fun <init> ()V
+}
+
+public final class se/warting/firebasecompose/LoadingState$Success : se/warting/firebasecompose/LoadingState {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun component1 ()Ljava/lang/Object;
+	public final fun copy (Ljava/lang/Object;)Lse/warting/firebasecompose/LoadingState$Success;
+	public static synthetic fun copy$default (Lse/warting/firebasecompose/LoadingState$Success;Ljava/lang/Object;ILjava/lang/Object;)Lse/warting/firebasecompose/LoadingState$Success;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getData ()Ljava/lang/Object;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface annotation class se/warting/firebasecompose/annotation/ExperimentalFirebaseComposeApi : java/lang/annotation/Annotation {
+}
+
+public abstract interface annotation class se/warting/firebasecompose/annotation/InternalFirebaseComposeApi : java/lang/annotation/Annotation {
+}
+
 public final class se/warting/firebasecompose/core/BuildConfig {
 	public static final field BUILD_TYPE Ljava/lang/String;
 	public static final field DEBUG Z
 	public static final field LIBRARY_PACKAGE_NAME Ljava/lang/String;
 	public fun <init> ()V
+}
+
+public final class se/warting/firebasecompose/id/ComposableSingletons$ProvideDeviceIdKt {
+	public static final field INSTANCE Lse/warting/firebasecompose/id/ComposableSingletons$ProvideDeviceIdKt;
+	public static field lambda-1 Lkotlin/jvm/functions/Function3;
+	public static field lambda-2 Lkotlin/jvm/functions/Function2;
+	public fun <init> ()V
+	public final fun getLambda-1$core_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-2$core_release ()Lkotlin/jvm/functions/Function2;
+}
+
+public final class se/warting/firebasecompose/id/DeviceIdKt {
+	public static final fun rememberDeviceIdState (Landroidx/compose/runtime/Composer;I)Lse/warting/firebasecompose/id/DeviceIdState;
+}
+
+public abstract interface class se/warting/firebasecompose/id/DeviceIdState {
+	public abstract fun getDeviceId ()Lse/warting/firebasecompose/LoadingState;
+	public abstract fun getDeviceIdInPrefs ()Lkotlinx/coroutines/flow/Flow;
+}
+
+public final class se/warting/firebasecompose/id/LocalDeviceIdKt {
+	public static final fun getLocalDeviceId ()Landroidx/compose/runtime/ProvidableCompositionLocal;
+}
+
+public final class se/warting/firebasecompose/id/MutableDeviceIdStateKt {
+	public static final fun getDataStore (Landroid/content/Context;)Landroidx/datastore/core/DataStore;
+}
+
+public final class se/warting/firebasecompose/id/ProvideDeviceIdKt {
+	public static final fun ProvideDeviceId (Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
 }
 

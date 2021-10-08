@@ -55,6 +55,8 @@
                     android:scheme="https"/>
             </intent-filter>
         </activity>
+        <activity android:name=".MessagingTokenActivity" android:exported="true" />
+        <activity android:name=".MessagingTokenStorageActivity" android:exported="true" />
     </application>
 
 </manifest>

@@ -1,0 +1,28 @@
+public final class se/warting/firebasecompose/messaging/ComposableSingletons$ProvideMessagingFirestoreTokenKt {
+	public static final field INSTANCE Lse/warting/firebasecompose/messaging/ComposableSingletons$ProvideMessagingFirestoreTokenKt;
+	public static field lambda-1 Lkotlin/jvm/functions/Function3;
+	public static field lambda-2 Lkotlin/jvm/functions/Function2;
+	public fun <init> ()V
+	public final fun getLambda-1$messagingfirestore_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-2$messagingfirestore_release ()Lkotlin/jvm/functions/Function2;
+}
+
+public final class se/warting/firebasecompose/messaging/LocalFirebaseMessagesFirestoreKt {
+	public static final fun getLocalFirebaseFirestore ()Landroidx/compose/runtime/ProvidableCompositionLocal;
+}
+
+public final class se/warting/firebasecompose/messaging/MessagingFirestoreStateKt {
+	public static final fun rememberMessagingFirestoreToken (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+}
+
+public final class se/warting/firebasecompose/messaging/ProvideMessagingFirestoreTokenKt {
+	public static final fun ProvideMessagingFirestoreToken (Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class se/warting/firebasecompose/messagingfirestore/BuildConfig {
+	public static final field BUILD_TYPE Ljava/lang/String;
+	public static final field DEBUG Z
+	public static final field LIBRARY_PACKAGE_NAME Ljava/lang/String;
+	public fun <init> ()V
+}
+

@@ -22,25 +22,12 @@
  * SOFTWARE.
  */
 
-package se.warting.firebasecompose
-
-import android.app.Activity
-import android.content.Context
-import android.content.ContextWrapper
-import androidx.annotation.RestrictTo
-import androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP
-import se.warting.firebasecompose.annotation.InternalFirebaseComposeApi
-
+package se.warting.firebasecompose.annotation
 /**
- * Find the closest Activity in a given Context.
+ * Marks declarations that are still **experimental**.
+ * Targets marked by this annotation may contain breaking changes in the future as their design is still incubating.
  */
-@RestrictTo(LIBRARY_GROUP)
-@InternalFirebaseComposeApi
-fun Context.findActivity(): Activity {
-    var context = this
-    while (context is ContextWrapper) {
-        if (context is Activity) return context
-        context = context.baseContext
-    }
-    throw IllegalStateException("Permissions should be called in the context of an Activity")
-}
+@MustBeDocumented
+@Retention(value = AnnotationRetention.BINARY)
+@RequiresOptIn(level = RequiresOptIn.Level.WARNING)
+annotation class ExperimentalFirebaseComposeApi

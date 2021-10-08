@@ -41,6 +41,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import se.warting.firebasecompose.annotation.InternalFirebaseComposeApi
 import se.warting.firebasecompose.findActivity
 
 @Composable
@@ -82,6 +83,7 @@ internal class MutableDynamicLinksState(
     override val pendingDynamicLinkData: PendingDynamicLinkData?
         get() = _pendingDynamicLinkData
 
+    @OptIn(InternalFirebaseComposeApi::class)
     private fun getDynamicLinkTask(): Task<PendingDynamicLinkData> {
         return firebaseDynamicLinks.getDynamicLink(context.findActivity().intent)
     }
