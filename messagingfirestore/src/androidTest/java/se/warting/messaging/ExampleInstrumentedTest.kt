@@ -22,25 +22,25 @@
  * SOFTWARE.
  */
 
-package se.warting.firebasecompose
+package se.warting.messaging
 
-import android.app.Activity
-import android.content.Context
-import android.content.ContextWrapper
-import androidx.annotation.RestrictTo
-import androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP
-import se.warting.firebasecompose.annotation.InternalFirebaseComposeApi
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import org.junit.Assert.*
+import org.junit.Test
+import org.junit.runner.RunWith
 
 /**
- * Find the closest Activity in a given Context.
+ * Instrumented test, which will execute on an Android device.
+ *
+ * See [testing documentation](http://d.android.com/tools/testing).
  */
-@RestrictTo(LIBRARY_GROUP)
-@InternalFirebaseComposeApi
-fun Context.findActivity(): Activity {
-    var context = this
-    while (context is ContextWrapper) {
-        if (context is Activity) return context
-        context = context.baseContext
+@RunWith(AndroidJUnit4::class)
+class ExampleInstrumentedTest {
+    @Test
+    fun useAppContext() {
+        // Context of the app under test.
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        assertEquals("se.warting.messaging.test", appContext.packageName)
     }
-    throw IllegalStateException("Permissions should be called in the context of an Activity")
 }

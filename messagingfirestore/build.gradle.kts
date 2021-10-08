@@ -39,7 +39,7 @@ androidGitVersion {
 
 val PUBLISH_GROUP_ID: String by extra("se.warting.firebase-compose")
 val PUBLISH_VERSION: String by extra(androidGitVersion.name().replace("v", ""))
-val PUBLISH_ARTIFACT_ID by extra("core")
+val PUBLISH_ARTIFACT_ID by extra("messaging-firestore")
 
 apply(from = "${rootProject.projectDir}/gradle/publish-module.gradle")
 
@@ -96,13 +96,14 @@ dependencies {
     val composeVersion = "1.0.3"
     val coroutineVersion = "1.5.2"
 
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
-
+    api(project(":core"))
+    api(project(":messaging"))
     api(platform("com.google.firebase:firebase-bom:28.4.2"))
 
     api("androidx.compose.runtime:runtime:$composeVersion")
     api("androidx.compose.ui:ui:$composeVersion")
     api("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$coroutineVersion")
+    implementation("com.google.firebase:firebase-firestore-ktx")
 
     implementation("androidx.core:core-ktx:1.6.0")
     implementation("androidx.appcompat:appcompat:1.3.1")

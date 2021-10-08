@@ -1,6 +1,4 @@
 /*
- * MIT License
- *
  * Copyright (c) 2021 Stefan Wärting
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,25 +20,25 @@
  * SOFTWARE.
  */
 
-package se.warting.firebasecompose
+package se.warting.firebasecompose.id
 
-import android.app.Activity
-import android.content.Context
-import android.content.ContextWrapper
-import androidx.annotation.RestrictTo
-import androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP
-import se.warting.firebasecompose.annotation.InternalFirebaseComposeApi
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import se.warting.firebasecompose.LoadingState
 
-/**
- * Find the closest Activity in a given Context.
- */
-@RestrictTo(LIBRARY_GROUP)
-@InternalFirebaseComposeApi
-fun Context.findActivity(): Activity {
-    var context = this
-    while (context is ContextWrapper) {
-        if (context is Activity) return context
-        context = context.baseContext
+@Composable
+fun ProvideDeviceId(
+    errorContent: @Composable (Exception) -> Unit = {},
+    loadingContent: @Composable () -> Unit = {},
+    content: @Composable () -> Unit,
+) {
+    val deviceIdState = rememberDeviceIdState()
+    when (val deviceId = deviceIdState.deviceId) {
+        is LoadingState.Failed -> errorContent(deviceId.error)
+        is LoadingState.Loading -> loadingContent()
+        is LoadingState.Success -> CompositionLocalProvider(
+            LocalDeviceId providesDefault deviceId.data,
+            content = content
+        )
     }
-    throw IllegalStateException("Permissions should be called in the context of an Activity")
 }

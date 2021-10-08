@@ -22,25 +22,19 @@
  * SOFTWARE.
  */
 
-package se.warting.firebasecompose
+package se.warting.messaging
 
-import android.app.Activity
-import android.content.Context
-import android.content.ContextWrapper
-import androidx.annotation.RestrictTo
-import androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP
-import se.warting.firebasecompose.annotation.InternalFirebaseComposeApi
+import org.junit.Assert.assertEquals
+import org.junit.Test
 
 /**
- * Find the closest Activity in a given Context.
+ * Example local unit test, which will execute on the development machine (host).
+ *
+ * See [testing documentation](http://d.android.com/tools/testing).
  */
-@RestrictTo(LIBRARY_GROUP)
-@InternalFirebaseComposeApi
-fun Context.findActivity(): Activity {
-    var context = this
-    while (context is ContextWrapper) {
-        if (context is Activity) return context
-        context = context.baseContext
+class ExampleUnitTest {
+    @Test
+    fun addition_isCorrect() {
+        assertEquals(4, 2L + 2L)
     }
-    throw IllegalStateException("Permissions should be called in the context of an Activity")
 }

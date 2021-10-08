@@ -22,25 +22,35 @@
  * SOFTWARE.
  */
 
-package se.warting.firebasecompose
+package se.warting.firebasecompose.messaging
 
-import android.app.Activity
-import android.content.Context
-import android.content.ContextWrapper
-import androidx.annotation.RestrictTo
-import androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP
-import se.warting.firebasecompose.annotation.InternalFirebaseComposeApi
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.SetOptions
+import se.warting.firebasecompose.annotation.ExperimentalFirebaseComposeApi
+import se.warting.firebasecompose.id.LocalDeviceId
 
-/**
- * Find the closest Activity in a given Context.
- */
-@RestrictTo(LIBRARY_GROUP)
-@InternalFirebaseComposeApi
-fun Context.findActivity(): Activity {
-    var context = this
-    while (context is ContextWrapper) {
-        if (context is Activity) return context
-        context = context.baseContext
+@ExperimentalFirebaseComposeApi
+@Composable
+fun rememberMessagingFirestoreToken(): String {
+
+    val firestore = LocalFirebaseFirestore.current
+    val deviceId = LocalDeviceId.current
+    val token = LocalFirebaseMessagingToken.current
+
+    val documentData = hashMapOf(
+        "tokenRefreshed" to FieldValue.serverTimestamp(),
+        "messagingToken" to token,
+        "deviceId" to deviceId
+    )
+    remember {
+        firestore
+            .collection("messagingTokens")
+            .document(deviceId)
+            .set(
+                documentData, SetOptions.merge()
+            )
     }
-    throw IllegalStateException("Permissions should be called in the context of an Activity")
+    return token
 }
