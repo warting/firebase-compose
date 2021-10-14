@@ -19,6 +19,8 @@ val PUBLISH_ARTIFACT_ID by extra("dynamic-links")
 
 apply(from = "${rootProject.projectDir}/gradle/publish-module.gradle")
 
+val composeVersion = "1.0.4"
+
 android {
     compileSdk = 31
 
@@ -43,7 +45,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.0.3"
+        kotlinCompilerExtensionVersion = composeVersion
     }
 
     kotlinOptions {
@@ -69,7 +71,6 @@ kotlin {
 
 dependencies {
 
-    val composeVersion = "1.0.3"
     val coroutineVersion = "1.5.2"
 
     implementation(project(":core"))

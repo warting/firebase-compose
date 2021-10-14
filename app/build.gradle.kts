@@ -4,6 +4,8 @@ plugins {
     id("com.google.gms.google-services")
 }
 
+val composeVersion = "1.0.4"
+
 android {
     compileSdk = 31
 
@@ -44,7 +46,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.0.3"
+        kotlinCompilerExtensionVersion = composeVersion
     }
 
     lint {
@@ -56,7 +58,7 @@ android {
 dependencies {
     implementation(platform("com.google.firebase:firebase-bom:28.4.2"))
     implementation("androidx.constraintlayout:constraintlayout:2.1.1")
-    val composeVersion = "1.0.3"
+
     implementation("androidx.core:core-ktx:1.6.0")
     implementation(project(":auth"))
     implementation(project(":dynamiclinks"))
