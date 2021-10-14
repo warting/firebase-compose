@@ -56,7 +56,7 @@ android {
 dependencies {
     implementation(platform("com.google.firebase:firebase-bom:28.4.2"))
     implementation("androidx.constraintlayout:constraintlayout:2.1.1")
-    val composeVersion = "1.0.3"
+    val composeVersion = "1.0.4"
     implementation("androidx.core:core-ktx:1.6.0")
     implementation(project(":auth"))
     implementation(project(":dynamiclinks"))

@@ -69,7 +69,7 @@ kotlin {
 
 dependencies {
 
-    val composeVersion = "1.0.3"
+    val composeVersion = "1.0.4"
     val coroutineVersion = "1.5.2"
 
     api(project(":core"))
