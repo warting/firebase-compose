@@ -7,7 +7,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 val LocalFirebaseAuthState = staticCompositionLocalOf<FirebaseAuthState> {
-    noLocalProvidedFor("FirebaseAuth")
+    error("CompositionLocal FirebaseAuth not present")
 }
 
 val LocalFirebaseAuth = staticCompositionLocalOf {
@@ -16,15 +16,12 @@ val LocalFirebaseAuth = staticCompositionLocalOf {
 
 @Composable
 fun ProvideFirebaseComposeAuthLocals(
+    eventListener: (AuthEvents) -> Unit = {},
     content: @Composable () -> Unit
 ) {
-    val state: FirebaseAuthState = rememberFirebaseAuthState()
+    val state: FirebaseAuthState = rememberFirebaseAuthState(eventListener)
     CompositionLocalProvider(
         LocalFirebaseAuthState provides state,
         content = content
     )
-}
-
-private fun noLocalProvidedFor(name: String): Nothing {
-    error("CompositionLocal $name not present")
 }

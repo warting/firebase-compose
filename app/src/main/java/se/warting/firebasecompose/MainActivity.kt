@@ -18,10 +18,13 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import kotlinx.coroutines.launch
+import se.warting.firebasecompose.auth.AuthEvents
 import se.warting.firebasecompose.auth.FirebaseComposeAuth
+import se.warting.firebasecompose.auth.LocalFirebaseAuth
 import se.warting.firebasecompose.auth.LocalFirebaseAuthState
 import se.warting.firebasecompose.auth.ProvideFirebaseComposeAuthLocals
 import se.warting.firebasecompose.auth.rememberFirebaseAuthState
@@ -32,7 +35,22 @@ class MainActivity : ComponentActivity() {
         setContent {
             MaterialTheme {
                 Surface {
-                    HighLevel()
+                    HighLevel {
+                        when (it) {
+                            is AuthEvents.FirebaseSignedIn -> Log.d(
+                                "AuthEvents",
+                                "FirebaseSignedIn provider: " + it.provider
+                            )
+                            AuthEvents.FirebaseSignedOut -> Log.d(
+                                "AuthEvents",
+                                "FirebaseSignedOut"
+                            )
+                            AuthEvents.GoogleAuthenticated -> Log.d(
+                                "AuthEvents",
+                                "GoogleAuthenticated"
+                            )
+                        }
+                    }
                 }
             }
         }
@@ -41,8 +59,8 @@ class MainActivity : ComponentActivity() {
 
 @Suppress("unused")
 @Composable
-fun LowLevel() {
-    val state = rememberFirebaseAuthState()
+fun LowLevel(eventListener: (AuthEvents) -> Unit = {}) {
+    val state = rememberFirebaseAuthState(eventListener)
 
     CompositionLocalProvider(
         LocalFirebaseAuthState provides state,
@@ -60,8 +78,8 @@ fun LowLevel() {
 }
 
 @Composable
-fun MidLevel() {
-    ProvideFirebaseComposeAuthLocals {
+fun MidLevel(eventListener: (AuthEvents) -> Unit = {}) {
+    ProvideFirebaseComposeAuthLocals(eventListener) {
         // LocalFirebaseAuthState.current is now available
         val state = LocalFirebaseAuthState.current
         when {
@@ -72,9 +90,10 @@ fun MidLevel() {
 }
 
 @Composable
-fun HighLevel() {
+fun HighLevel(eventListener: (AuthEvents) -> Unit = {}) {
     // LocalFirebaseAuthState.current is now available
     FirebaseComposeAuth(
+        eventListener = eventListener,
         loggedInContent = { LoggedIn() },
         loggedOutContent = { LoggedOut() }
     )
@@ -82,7 +101,8 @@ fun HighLevel() {
 
 @Composable
 fun LoggedIn() {
-    val f = LocalFirebaseAuthState.current
+    val firebaseAuthState = LocalFirebaseAuthState.current
+    val firebaseAuth = LocalFirebaseAuth.current
 
     val scope = rememberCoroutineScope()
     Column(
@@ -90,10 +110,14 @@ fun LoggedIn() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(text = "Hello anonymous!")
-        Text(text = f.getUserId() ?: "")
+        if (firebaseAuth.currentUser?.isAnonymous == true) {
+            Text(text = "Hello anonymous!")
+        } else {
+            Text(text = "Hello " + firebaseAuth.currentUser?.displayName.toString() + "!")
+        }
+        Text(text = "UserId: " + firebaseAuthState.getUserId())
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { f.logout() }) {
+        Button(onClick = { firebaseAuthState.logout() }) {
             Text(text = "Logout!")
         }
         Spacer(modifier = Modifier.height(16.dp))
@@ -101,7 +125,7 @@ fun LoggedIn() {
         Button(onClick = {
             scope.launch {
                 try {
-                    f.getItToken(true)
+                    firebaseAuthState.getItToken(true)
                 } catch (e: FirebaseAuthInvalidUserException) {
                     Log.e(
                         "FirebaseCompose",
@@ -118,15 +142,22 @@ fun LoggedIn() {
 
 @Composable
 fun LoggedOut() {
-    val f = LocalFirebaseAuthState.current
+    val firebaseAuthState = LocalFirebaseAuthState.current
+    val clientId: String = stringResource(id = R.string.web_client_id)
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(text = "Hello logged out user!")
-        Button(onClick = { f.signInAnonymously() }) {
+        Button(onClick = { firebaseAuthState.signInAnonymously() }) {
             Text(text = "Sign in Anonymously!")
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(onClick = {
+            firebaseAuthState.signInWithGoogle(clientId)
+        }) {
+            Text(text = "Sign in with google!")
         }
     }
 }

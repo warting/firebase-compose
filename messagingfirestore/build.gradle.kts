@@ -4,17 +4,10 @@ plugins {
     id("maven-publish")
     id("signing")
     id("org.jetbrains.dokka") version "1.5.31"
-    id("com.gladed.androidgitversion") version "0.4.14"
 }
-
-
-androidGitVersion {
-    tagPattern = "^v[0-9]+.*"
-}
-
 
 val PUBLISH_GROUP_ID: String by extra("se.warting.firebase-compose")
-val PUBLISH_VERSION: String by extra(androidGitVersion.name().replace("v", ""))
+val PUBLISH_VERSION: String by extra(rootProject.version as String)
 val PUBLISH_ARTIFACT_ID by extra("messaging-firestore")
 
 apply(from = "${rootProject.projectDir}/gradle/publish-module.gradle")
@@ -57,9 +50,14 @@ android {
     }
 
     lint {
-        lintConfig = file("$rootDir/config/lint/lint.xml")
-        lintConfig = file("$rootDir/config/lint/lint.xml")
-        //baseline(file("lint-baseline.xml"))
+        baseline(file("lint-baseline.xml"))
+        isCheckReleaseBuilds = true
+        isCheckAllWarnings = true
+        isWarningsAsErrors = true
+        isAbortOnError = true
+        isCheckDependencies = true
+        isCheckGeneratedSources = false
+        sarifOutput = file("../lint-results-messagingfirestore.sarif")
     }
 }
 
