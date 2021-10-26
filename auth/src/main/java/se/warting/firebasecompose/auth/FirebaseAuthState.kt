@@ -2,6 +2,7 @@ package se.warting.firebasecompose.auth
 
 import androidx.compose.runtime.Composable
 import com.google.firebase.auth.FirebaseAuth
+import se.warting.firebasecompose.auth.internal.rememberMutableFirebaseAuthState
 
 @Composable
 fun rememberFirebaseAuthState(eventListener: (AuthEvents) -> Unit = {}): FirebaseAuthState {

@@ -1,6 +1,5 @@
-package se.warting.firebasecompose.auth
+package se.warting.firebasecompose.auth.internal
 
-import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -13,6 +12,9 @@ import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.tasks.await
+import se.warting.firebasecompose.auth.AuthEvents
+import se.warting.firebasecompose.auth.FirebaseAuthState
+import se.warting.firebasecompose.auth.LocalFirebaseAuth
 
 private const val ANONYMOUS_PROVIDER = "anonymous"
 
@@ -22,7 +24,7 @@ internal fun rememberMutableFirebaseAuthState(eventListener: (AuthEvents) -> Uni
     val firebaseAuth = LocalFirebaseAuth.current
 
     var mutableCredential by remember {
-        mutableStateOf<AuthCredential?>(null)
+        mutableStateOf<AuthenticateResult>(AuthenticateResult.None)
     }
 
     val linkGoogleContract =
@@ -34,7 +36,11 @@ internal fun rememberMutableFirebaseAuthState(eventListener: (AuthEvents) -> Uni
         }
 
     val firebaseAuthState = remember {
-        MutableFirebaseAuthState(firebaseAuth, linkGoogleContract, eventListener)
+        MutableFirebaseAuthState(
+            firebaseAuth = firebaseAuth,
+            launchGoogleSignIn = linkGoogleContract::launch,
+            eventListener = eventListener
+        )
     }
 
     val authStateListener = remember {
@@ -44,11 +50,11 @@ internal fun rememberMutableFirebaseAuthState(eventListener: (AuthEvents) -> Uni
     }
 
     LaunchedEffect(mutableCredential) {
-        val credentials = mutableCredential
-        if (credentials != null) {
-            val fine = firebaseAuthState.signInWithCredential(credentials)
+        val result = mutableCredential
+        if (result is AuthenticateResult.Success) {
+            val fine = firebaseAuthState.signInWithCredential(result.credential)
             if (fine.credential != null) {
-                eventListener(AuthEvents.FirebaseSignedIn(credentials.provider))
+                eventListener(AuthEvents.FirebaseSignedIn(result.credential.provider))
             }
         }
     }
@@ -65,7 +71,7 @@ internal fun rememberMutableFirebaseAuthState(eventListener: (AuthEvents) -> Uni
 
 internal class MutableFirebaseAuthState(
     private val firebaseAuth: FirebaseAuth,
-    private val linkGoogleContract: ManagedActivityResultLauncher<String, AuthCredential?>,
+    private val launchGoogleSignIn: (requestIdToken: String) -> Unit,
     private val eventListener: (AuthEvents) -> Unit
 ) : FirebaseAuthState {
 
@@ -79,9 +85,7 @@ internal class MutableFirebaseAuthState(
         eventListener(AuthEvents.FirebaseSignedOut)
     }
 
-    override fun signInWithGoogle(requestIdToken: String) {
-        linkGoogleContract.launch(requestIdToken)
-    }
+    override fun signInWithGoogle(requestIdToken: String) = launchGoogleSignIn(requestIdToken)
 
     override fun signInAnonymously() {
         firebaseAuth.signInAnonymously()
