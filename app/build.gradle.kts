@@ -6,6 +6,12 @@ plugins {
 
 val composeVersion = "1.0.4"
 
+
+val DEFAULT_WEB_CLIENT_ID: String =
+    com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(rootDir)
+        .getProperty("DEFAULT_WEB_CLIENT_ID", "CHANGE_ME")
+
+
 android {
     compileSdk = 31
 
@@ -20,6 +26,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        resValue("string", "web_client_id", DEFAULT_WEB_CLIENT_ID)
     }
 
     buildTypes {
@@ -29,6 +36,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            resValue("string", "web_client_id", DEFAULT_WEB_CLIENT_ID)
         }
     }
     compileOptions {
@@ -50,7 +58,15 @@ android {
     }
 
     lint {
-        lintConfig = file("$rootDir/config/lint/lint.xml")
+        baseline(file("lint-baseline.xml"))
+        isCheckReleaseBuilds = true
+        isCheckAllWarnings = true
+        isWarningsAsErrors = true
+        isAbortOnError = true
+        disable.add("LogConditional")
+        isCheckDependencies = true
+        isCheckGeneratedSources = false
+        sarifOutput = file("../lint-results-app.sarif")
     }
 }
 

@@ -10,7 +10,7 @@ to allow writes and updates in Firestore.
 
 The library is available via MavenCentral:
 
-```
+```groovy
 allprojects {
     repositories {
         // ...
@@ -19,19 +19,58 @@ allprojects {
 }
 ```
 
+<details>
+<summary>Snapshots of the development version are available in Sonatype's snapshots repository.</summary>
+<p>
+
+[![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/se.warting.firebase-compose/messaging-firestore?server=https%3A%2F%2Foss.sonatype.org)](https://oss.sonatype.org/content/repositories/snapshots/se/warting/firebase-compose/messaging-firestore/)
+
+```groovy
+allprojects {
+    repositories {
+        // ...
+        maven {
+            url 'https://oss.sonatype.org/content/repositories/snapshots/'
+        }
+    }
+}
+```
+
+</p>
+</details>
+
 Add it to your module dependencies:
 
-```
+```groovy
 dependencies {
     implementation("se.warting.firebase-compose:messaging-firestore:<latest_version>")
 }
 ```
 
+<details>
+<summary>Snapshots of the development version are available in Sonatype's snapshots repository.</summary>
+<p>
+
+[![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/se.warting.firebase-compose/messaging-firestore?server=https%3A%2F%2Foss.sonatype.org)](https://oss.sonatype.org/content/repositories/snapshots/se/warting/firebase-compose/messaging-firestore/)
+
+```groovy
+allprojects {
+    repositories {
+        // ...
+        maven {
+            url 'https://oss.sonatype.org/content/repositories/snapshots/'
+        }
+    }
+}
+```
+</p>
+</details>
+
 ## How to use
 
 All you need to do is to use `ProvideMessagingFirestoreToken`:
 
-```
+```kotlin
 ProvideMessagingFirestoreToken {
     Text(text = "Token: " + LocalFirebaseMessagingToken.current)
 }

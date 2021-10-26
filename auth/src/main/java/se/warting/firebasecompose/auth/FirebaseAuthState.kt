@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import com.google.firebase.auth.FirebaseAuth
 
 @Composable
-fun rememberFirebaseAuthState(): FirebaseAuthState {
-    return rememberMutableFirebaseAuthState()
+fun rememberFirebaseAuthState(eventListener: (AuthEvents) -> Unit = {}): FirebaseAuthState {
+    return rememberMutableFirebaseAuthState(eventListener)
 }
 
 interface FirebaseAuthState {
@@ -13,6 +13,8 @@ interface FirebaseAuthState {
     val isLoggedIn: Boolean
 
     fun logout()
+
+    fun signInWithGoogle(requestIdToken: String)
 
     fun signInAnonymously()
 

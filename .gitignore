@@ -9,4 +9,6 @@ build
 .cxx
 local.properties
 google-services.json
+secrets.properties
 build-cache
+*.sarif

@@ -1,3 +1,29 @@
+public abstract class se/warting/firebasecompose/auth/AuthEvents {
+	public static final field $stable I
+}
+
+public final class se/warting/firebasecompose/auth/AuthEvents$FirebaseSignedIn : se/warting/firebasecompose/auth/AuthEvents {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lse/warting/firebasecompose/auth/AuthEvents$FirebaseSignedIn;
+	public static synthetic fun copy$default (Lse/warting/firebasecompose/auth/AuthEvents$FirebaseSignedIn;Ljava/lang/String;ILjava/lang/Object;)Lse/warting/firebasecompose/auth/AuthEvents$FirebaseSignedIn;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getProvider ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class se/warting/firebasecompose/auth/AuthEvents$FirebaseSignedOut : se/warting/firebasecompose/auth/AuthEvents {
+	public static final field $stable I
+	public static final field INSTANCE Lse/warting/firebasecompose/auth/AuthEvents$FirebaseSignedOut;
+}
+
+public final class se/warting/firebasecompose/auth/AuthEvents$GoogleAuthenticated : se/warting/firebasecompose/auth/AuthEvents {
+	public static final field $stable I
+	public static final field INSTANCE Lse/warting/firebasecompose/auth/AuthEvents$GoogleAuthenticated;
+}
+
 public final class se/warting/firebasecompose/auth/BuildConfig {
 	public static final field BUILD_TYPE Ljava/lang/String;
 	public static final field DEBUG Z
@@ -13,19 +39,36 @@ public abstract interface class se/warting/firebasecompose/auth/FirebaseAuthStat
 	public abstract fun logout ()V
 	public abstract fun removeAuthStateListener (Lcom/google/firebase/auth/FirebaseAuth$AuthStateListener;)V
 	public abstract fun signInAnonymously ()V
+	public abstract fun signInWithGoogle (Ljava/lang/String;)V
 	public abstract fun updateLoggedInState ()V
 }
 
 public final class se/warting/firebasecompose/auth/FirebaseAuthStateKt {
-	public static final fun rememberFirebaseAuthState (Landroidx/compose/runtime/Composer;I)Lse/warting/firebasecompose/auth/FirebaseAuthState;
+	public static final fun rememberFirebaseAuthState (Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)Lse/warting/firebasecompose/auth/FirebaseAuthState;
 }
 
 public final class se/warting/firebasecompose/auth/FirebaseComposeAuthKt {
-	public static final fun FirebaseComposeAuth (Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
+	public static final fun FirebaseComposeAuth (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class se/warting/firebasecompose/auth/FirebaseSignInResultContracts {
+	public static final field $stable I
+	public fun <init> ()V
+}
+
+public final class se/warting/firebasecompose/auth/FirebaseSignInResultContracts$SignInWithGoogle : androidx/activity/result/contract/ActivityResultContract {
+	public static final field $stable I
+	public fun <init> ()V
+	public synthetic fun createIntent (Landroid/content/Context;Ljava/lang/Object;)Landroid/content/Intent;
+	public fun createIntent (Landroid/content/Context;Ljava/lang/String;)Landroid/content/Intent;
+	public synthetic fun getSynchronousResult (Landroid/content/Context;Ljava/lang/Object;)Landroidx/activity/result/contract/ActivityResultContract$SynchronousResult;
+	public fun getSynchronousResult (Landroid/content/Context;Ljava/lang/String;)Landroidx/activity/result/contract/ActivityResultContract$SynchronousResult;
+	public fun parseResult (ILandroid/content/Intent;)Lcom/google/firebase/auth/AuthCredential;
+	public synthetic fun parseResult (ILandroid/content/Intent;)Ljava/lang/Object;
 }
 
 public final class se/warting/firebasecompose/auth/ProvideAndroidCompositionLocalsKt {
-	public static final fun ProvideFirebaseComposeAuthLocals (Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
+	public static final fun ProvideFirebaseComposeAuthLocals (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
 	public static final fun getLocalFirebaseAuth ()Landroidx/compose/runtime/ProvidableCompositionLocal;
 	public static final fun getLocalFirebaseAuthState ()Landroidx/compose/runtime/ProvidableCompositionLocal;
 }
