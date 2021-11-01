@@ -55,6 +55,7 @@ android {
         isCheckAllWarnings = true
         isWarningsAsErrors = true
         isAbortOnError = true
+        disable.add("GradleDependency")
         isCheckDependencies = true
         isCheckGeneratedSources = false
         sarifOutput = file("../lint-results-messaging.sarif")

@@ -64,6 +64,7 @@ android {
         isWarningsAsErrors = true
         isAbortOnError = true
         disable.add("LogConditional")
+        disable.add("GradleDependency")
         isCheckDependencies = true
         isCheckGeneratedSources = false
         sarifOutput = file("../lint-results-app.sarif")
