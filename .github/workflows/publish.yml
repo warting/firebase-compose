@@ -6,7 +6,7 @@ on:
 
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  publish_sonatype:
     # The type of runner that the job will run on
     runs-on: ubuntu-20.04
 
@@ -42,7 +42,7 @@ jobs:
             ~/.gradle/caches/jars-*
             ~/.gradle/caches/build-cache-*
             build-cache
-          key: gradle-${{ hashFiles('checksum.txt') }}
+          key: gradle-${{ secrets.CACHE_VERSION }}-${{ hashFiles('checksum.txt') }}
 
       - name: Publish application
         run: ./gradlew publishToSonatype closeAndReleaseSonatypeStagingRepository

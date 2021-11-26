@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  publish_snapshot:
     runs-on: ubuntu-20.04
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -40,7 +40,7 @@ jobs:
             ~/.gradle/caches/jars-*
             ~/.gradle/caches/build-cache-*
             build-cache
-          key: gradle-${{ hashFiles('checksum.txt') }}
+          key: gradle-${{ secrets.CACHE_VERSION }}-${{ hashFiles('checksum.txt') }}
 
       - name: Publish application
         run: |
