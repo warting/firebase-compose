@@ -73,7 +73,7 @@ dependencies {
     val coroutineVersion = "1.5.2"
 
     api(project(":core"))
-    api(platform("com.google.firebase:firebase-bom:29.0.0"))
+    api(platform("com.google.firebase:firebase-bom:29.0.1"))
     api("com.google.firebase:firebase-messaging-ktx")
 
     api("androidx.compose.runtime:runtime:$composeVersion")
