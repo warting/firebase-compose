@@ -41,10 +41,8 @@ jobs:
             build-cache
           key: gradle-${{ secrets.CACHE_VERSION }}-${{ hashFiles('checksum.txt') }}
 
-      - name: Beep
-        env:
-          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
-        run: echo $GOOGLE_SERVICES_JSON > ./app/google-services.json
+      - name: googleServiceJson
+        run: echo "${{ secrets.GOOGLE_SERVICES_JSON }}" > ./app/google-services.json.b64 && base64 -d ./app/google-services.json.b64 > ./app/google-services.json
 
       - name: Run Android checks
         run: ./gradlew check --stacktrace
