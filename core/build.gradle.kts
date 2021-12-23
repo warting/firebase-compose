@@ -74,7 +74,7 @@ kotlin {
 dependencies {
 
 
-    val coroutineVersion = "1.5.2"
+    val coroutineVersion = "1.6.0"
 
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
