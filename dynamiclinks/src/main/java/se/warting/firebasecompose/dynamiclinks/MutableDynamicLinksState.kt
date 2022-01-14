@@ -1,6 +1,7 @@
 package se.warting.firebasecompose.dynamiclinks
 
 import android.content.Context
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
@@ -35,8 +36,11 @@ internal fun rememberMutableDynamicLinksState(
     if (getPendingDynamicLinkDataOnStart) {
         DisposableEffect(firebaseAuthState) {
             val refreshDynamicLink: Job = scope.launch {
-
-                firebaseAuthState.updateDynamicLink()
+                try {
+                    firebaseAuthState.updateDynamicLink()
+                } catch (e: com.google.android.gms.common.api.ApiException) {
+                    Log.e("ApiException", e.localizedMessage, e)
+                }
             }
             onDispose {
                 refreshDynamicLink.cancel(
