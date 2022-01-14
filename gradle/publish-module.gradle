@@ -70,8 +70,8 @@ afterEvaluate {
                     }
 
                     scm {
-                        connection = 'scm:git@github.com:wartiong/firebase-compose.git'
-                        developerConnection = 'scm:git:ssh://github.com/wartiong/firebase-compose.git'
+                        connection = 'scm:git@github.com:warting/firebase-compose.git'
+                        developerConnection = 'scm:git:ssh://github.com/warting/firebase-compose.git'
                         url = 'https://github.com/warting/firebase-compose/tree/main'
                     }
                 }
