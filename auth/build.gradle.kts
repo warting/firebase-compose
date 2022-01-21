@@ -74,7 +74,7 @@ kotlin {
 dependencies {
 
     implementation(project(":core"))
-    api(platform("com.google.firebase:firebase-bom:29.0.3"))
+    api(platform("com.google.firebase:firebase-bom:29.0.4"))
     api("com.google.firebase:firebase-auth-ktx")
     implementation("androidx.core:core-ktx:1.7.0")
     implementation("com.google.android.gms:play-services-auth:20.0.1")
