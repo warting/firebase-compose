@@ -15,9 +15,9 @@ internal class FirebaseSignInResultContracts {
     class SignInWithGoogle :
         ActivityResultContract<String, AuthenticateResult>() {
         @CallSuper
-        override fun createIntent(context: Context, requestIdToken: String): Intent {
+        override fun createIntent(context: Context, input: String): Intent {
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(requestIdToken)
+                .requestIdToken(input)
                 .requestEmail()
                 .build()
 
