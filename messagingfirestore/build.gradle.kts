@@ -50,15 +50,15 @@ android {
     }
 
     lint {
-        baseline(file("lint-baseline.xml"))
-        isCheckReleaseBuilds = true
-        isCheckAllWarnings = true
-        isWarningsAsErrors = true
-        isAbortOnError = true
+        baseline = file("lint-baseline.xml")
+        checkReleaseBuilds = true
+        checkAllWarnings = true
+        warningsAsErrors = true
+        abortOnError = true
         disable.add("GradleDependency")
-        isCheckDependencies = true
-        isCheckGeneratedSources = false
-        sarifOutput = file("../lint-results-messagingfirestore.sarif")
+        checkDependencies = true
+        checkGeneratedSources = false
+        sarifOutput = file("../lint-results-auth.sarif")
     }
 }
 
