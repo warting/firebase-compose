@@ -12,7 +12,7 @@ val PUBLISH_ARTIFACT_ID by extra("messaging")
 
 apply(from = "${rootProject.projectDir}/gradle/publish-module.gradle")
 
-val composeVersion = "1.2.0-alpha03"
+val composeVersion = "1.2.0-alpha04"
 
 android {
     compileSdk = 31
