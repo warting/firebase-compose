@@ -4,7 +4,7 @@ plugins {
     id("com.google.gms.google-services")
 }
 
-val composeVersion = "1.2.0-alpha04"
+val composeVersion = "1.2.0-alpha05"
 
 
 val DEFAULT_WEB_CLIENT_ID: String =
