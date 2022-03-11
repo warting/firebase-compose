@@ -74,7 +74,7 @@ dependencies {
 
     api(project(":core"))
     api(project(":messaging"))
-    api(platform("com.google.firebase:firebase-bom:29.1.0"))
+    api(platform("com.google.firebase:firebase-bom:29.2.0"))
 
     api("androidx.compose.runtime:runtime:$composeVersion")
     api("androidx.compose.ui:ui:$composeVersion")
