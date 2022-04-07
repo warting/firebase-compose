@@ -12,7 +12,7 @@ val PUBLISH_ARTIFACT_ID by extra("dynamic-links")
 
 apply(from = "${rootProject.projectDir}/gradle/publish-module.gradle")
 
-val composeVersion = "1.2.0-alpha06"
+val composeVersion = "1.2.0-alpha07"
 
 android {
     compileSdk = 31
