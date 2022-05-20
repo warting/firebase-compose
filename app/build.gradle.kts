@@ -74,7 +74,7 @@ android {
 
 dependencies {
     implementation(platform("com.google.firebase:firebase-bom:30.0.1"))
-    implementation("androidx.constraintlayout:constraintlayout:2.1.3")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
     implementation("androidx.core:core-ktx:1.7.0")
     implementation(project(":auth"))
