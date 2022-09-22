@@ -78,7 +78,7 @@ dependencies {
     api("com.google.firebase:firebase-auth-ktx")
     implementation("androidx.core:core-ktx:1.8.0")
     implementation("com.google.android.gms:play-services-auth:20.2.0")
-    implementation("androidx.activity:activity-compose:1.5.0")
+    implementation("androidx.activity:activity-compose:1.6.0")
     implementation("androidx.appcompat:appcompat:1.4.2")
     implementation("com.google.android.material:material:1.6.1")
     testImplementation("junit:junit:4.13.2")
