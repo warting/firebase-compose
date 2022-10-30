@@ -6,11 +6,11 @@ updates:
       interval: "daily"
       time: "05:00"
       timezone: "Europe/Stockholm"
-    open-pull-requests-limit: 40
+    open-pull-requests-limit: 5
   - package-ecosystem: "github-actions"
     directory: ""
     schedule:
       interval: "daily"
       time: "05:00"
       timezone: "Europe/Stockholm"
-    open-pull-requests-limit: 40
+    open-pull-requests-limit: 5
