@@ -70,7 +70,7 @@ kotlin {
 
 dependencies {
 
-    val coroutineVersion = "1.6.1"
+    val coroutineVersion = "1.6.4"
 
     api(project(":core"))
     api(platform("com.google.firebase:firebase-bom:31.0.2"))
