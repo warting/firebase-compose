@@ -13,12 +13,12 @@ val DEFAULT_WEB_CLIENT_ID: String =
 
 
 android {
-    compileSdk = 31
+    compileSdk = 32
 
     defaultConfig {
         applicationId = "se.warting.firebasecompose"
         minSdk = 21
-        targetSdk = 31
+        targetSdk = 32
         versionCode = 1
         versionName = "1.0"
 
@@ -69,6 +69,7 @@ android {
         checkGeneratedSources = false
         sarifOutput = file("../lint-results-app.sarif")
     }
+    namespace = "se.warting.firebasecompose"
 }
 
 

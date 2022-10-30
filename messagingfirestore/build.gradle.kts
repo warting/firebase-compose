@@ -19,7 +19,6 @@ android {
 
     defaultConfig {
         minSdk = 21
-        targetSdk = 31
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -60,6 +59,7 @@ android {
         checkGeneratedSources = false
         sarifOutput = file("../lint-results-auth.sarif")
     }
+    namespace = "se.warting.firebasecompose.messagingfirestore"
 }
 
 kotlin {
