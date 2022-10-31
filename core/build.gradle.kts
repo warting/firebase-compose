@@ -15,8 +15,6 @@ val PUBLISH_ARTIFACT_ID by extra("core")
 
 apply(from = "${rootProject.projectDir}/gradle/publish-module.gradle")
 
-val composeVersion = "1.2.0-beta02"
-
 android {
     compileSdk = 31
 
@@ -40,7 +38,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = composeVersion
+        kotlinCompilerExtensionVersion = "1.3.2"
     }
 
     kotlinOptions {
@@ -72,7 +70,9 @@ kotlin {
 
 
 dependencies {
-
+    val composeBom = platform("androidx.compose:compose-bom:2022.10.00")
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
 
     val coroutineVersion = "1.6.4"
 
@@ -80,8 +80,8 @@ dependencies {
 
     api(platform("com.google.firebase:firebase-bom:31.0.2"))
 
-    api("androidx.compose.runtime:runtime:$composeVersion")
-    api("androidx.compose.ui:ui:$composeVersion")
+    api("androidx.compose.runtime:runtime")
+    api("androidx.compose.ui:ui")
     api("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$coroutineVersion")
 
     implementation("androidx.core:core-ktx:1.9.0")
