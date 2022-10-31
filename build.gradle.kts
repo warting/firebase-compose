@@ -4,18 +4,14 @@ import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 buildscript {
 
     repositories {
-        maven {
-            // until broken gradle plugin portal is fixed
-            url = uri("https://premex.jfrog.io/artifactory/local-gradle-plugins/")
-        }
         google()
         mavenCentral()
     }
     dependencies {
 
-        classpath("com.android.tools.build:gradle:7.4.0-beta03")
+        classpath("com.android.tools.build:gradle:7.4.0-beta04")
 
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.20")
 
         classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.21.0")
 
