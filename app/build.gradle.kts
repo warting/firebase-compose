@@ -73,8 +73,8 @@ android {
 
 
 dependencies {
-    implementation(platform("androidx.compose:compose-bom:2022.11.00"))
-    val composeBom = platform("androidx.compose:compose-bom:2022.10.00")
+    implementation(platform("androidx.compose:compose-bom:2022.12.00"))
+    val composeBom = platform("androidx.compose:compose-bom:2022.12.00")
     implementation(composeBom )
     androidTestImplementation(composeBom)
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
