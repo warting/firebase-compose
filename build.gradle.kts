@@ -11,7 +11,7 @@ buildscript {
 
         classpath("com.android.tools.build:gradle:8.0.0-alpha08")
 
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.20")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.22")
 
         classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.22.0")
 
