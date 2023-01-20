@@ -74,7 +74,7 @@ dependencies {
     api(platform("com.google.firebase:firebase-bom:31.1.1"))
     api("com.google.firebase:firebase-auth-ktx")
     implementation("androidx.core:core-ktx:1.9.0")
-    implementation("com.google.android.gms:play-services-auth:20.4.0")
+    implementation("com.google.android.gms:play-services-auth:20.4.1")
     implementation("androidx.activity:activity-compose:1.6.1")
     implementation("androidx.appcompat:appcompat:1.6.0")
     implementation("com.google.android.material:material:1.7.0")
