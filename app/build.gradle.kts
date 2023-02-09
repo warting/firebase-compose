@@ -84,7 +84,7 @@ dependencies {
     implementation(project(":dynamiclinks"))
     implementation(project(":messaging"))
     implementation(project(":messagingfirestore"))
-    implementation("androidx.appcompat:appcompat:1.6.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.8.0")
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.material:material")
