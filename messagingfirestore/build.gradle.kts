@@ -73,7 +73,7 @@ dependencies {
     api(project(":core"))
     api(project(":messaging"))
     api(platform("com.google.firebase:firebase-bom:31.2.2"))
-    val composeBom = platform("androidx.compose:compose-bom:2023.01.00")
+    val composeBom = platform("androidx.compose:compose-bom:2023.03.00")
     implementation(composeBom )
     androidTestImplementation(composeBom)
 
