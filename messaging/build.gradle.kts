@@ -76,7 +76,7 @@ dependencies {
     androidTestImplementation(composeBom)
 
     api(project(":core"))
-    api(platform("com.google.firebase:firebase-bom:31.2.2"))
+    api(platform("com.google.firebase:firebase-bom:31.2.3"))
     api("com.google.firebase:firebase-messaging-ktx")
 
     api("androidx.compose.runtime:runtime")
