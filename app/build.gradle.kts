@@ -79,7 +79,7 @@ dependencies {
     androidTestImplementation(composeBom)
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.core:core-ktx:1.10.0")
     implementation(project(":auth"))
     implementation(project(":dynamiclinks"))
     implementation(project(":messaging"))

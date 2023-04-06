@@ -84,7 +84,7 @@ dependencies {
     api("androidx.compose.ui:ui")
     api("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$coroutineVersion")
 
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.core:core-ktx:1.10.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.8.0")
     testImplementation("junit:junit:4.13.2")
