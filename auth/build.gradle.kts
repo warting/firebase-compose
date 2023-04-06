@@ -73,7 +73,7 @@ dependencies {
     implementation(project(":core"))
     api(platform("com.google.firebase:firebase-bom:31.2.2"))
     api("com.google.firebase:firebase-auth-ktx")
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.core:core-ktx:1.10.0")
     implementation("com.google.android.gms:play-services-auth:20.5.0")
     implementation("androidx.activity:activity-compose:1.7.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
