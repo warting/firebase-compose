@@ -78,7 +78,7 @@ dependencies {
 
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
-    api(platform("com.google.firebase:firebase-bom:31.2.2"))
+    api(platform("com.google.firebase:firebase-bom:31.4.0"))
 
     api("androidx.compose.runtime:runtime")
     api("androidx.compose.ui:ui")
