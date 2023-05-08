@@ -72,7 +72,7 @@ dependencies {
     implementation(composeBom )
     androidTestImplementation(composeBom)
 
-    val coroutineVersion = "1.6.4"
+    val coroutineVersion = "1.7.0"
 
     implementation(project(":core"))
     api(platform("com.google.firebase:firebase-bom:31.2.2"))

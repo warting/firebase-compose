@@ -68,7 +68,7 @@ kotlin {
 
 dependencies {
 
-    val coroutineVersion = "1.6.4"
+    val coroutineVersion = "1.7.0"
 
     api(project(":core"))
     api(project(":messaging"))
