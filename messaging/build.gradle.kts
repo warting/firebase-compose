@@ -69,7 +69,7 @@ kotlin {
 
 dependencies {
 
-    val coroutineVersion = "1.7.0"
+    val coroutineVersion = "1.7.1"
 
     val composeBom = platform("androidx.compose:compose-bom:2023.05.01")
     implementation(composeBom )
