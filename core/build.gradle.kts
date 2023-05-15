@@ -74,7 +74,7 @@ dependencies {
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
-    val coroutineVersion = "1.7.0"
+    val coroutineVersion = "1.7.1"
 
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
