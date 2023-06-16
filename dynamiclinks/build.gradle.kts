@@ -75,7 +75,7 @@ dependencies {
     val coroutineVersion = "1.7.1"
 
     implementation(project(":core"))
-    api(platform("com.google.firebase:firebase-bom:31.2.2"))
+    api(platform("com.google.firebase:firebase-bom:32.1.1"))
     api("com.google.firebase:firebase-dynamic-links-ktx")
 
     api("androidx.compose.runtime:runtime")
